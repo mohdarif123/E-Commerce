@@ -8,7 +8,7 @@ const Navbar = () => {
         <>
             <nav>
                 <ul className='left'>
-                    <li><a href=''></a>IndiaExpress</li>
+                    <li><a href=''></a>IndiaExpress IndiaExpress</li>
                 </ul>
                 <ul className='right'>
                     <li><a href=''><span className='shoppingCart'><i> <AccountBalanceIcon /> </i><span className='cartCount'>0</span></span></a></li>

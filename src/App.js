@@ -9,7 +9,9 @@ function App() {
       <Navbar />
       <Banner />
       <ProductsContextProvider>
-        <Products />
+        <div className="container">
+          <Products />
+        </div>
       </ProductsContextProvider>
     </div>
   );

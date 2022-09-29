@@ -72,7 +72,6 @@ const ProductsContextProvider = (props) => {
   return (
     <>
       <ProductsContext.Provider value={{ products: [...products] }}>
-        {" "}
         {props.children}
       </ProductsContext.Provider>
     </>

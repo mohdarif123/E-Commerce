@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
+import { CartContexts } from "../Global/CartContext";
 import { ProductsContext } from "../Global/ProductsContext";
 import Banner from "./Banner";
 
 const Products = () => {
   const { products } = useContext(ProductsContext);
+  const data = useContext(CartContexts);
+  console.log(data,"data");
   return (
     <>
       <div className="container">

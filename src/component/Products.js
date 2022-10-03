@@ -5,8 +5,7 @@ import Banner from "./Banner";
 
 const Products = () => {
   const { products } = useContext(ProductsContext);
-  const data = useContext(CartContexts);
-  console.log(data,"data");
+  const { dispatch } = useContext(CartContexts);
   return (
     <>
       <div className="container">
@@ -22,7 +21,18 @@ const Products = () => {
                 <div className="product-price">${product.Price}.00</div>
               </div>
 
-              <div className="add-to-cart"> add to cart</div>
+              <div
+                className="add-to-cart"
+                onClick={() =>
+                  dispatch({
+                    type: "ADD_TO_CART",
+                    id: product.id,
+                    product: product,
+                  })
+                }
+              >
+                add to cart
+              </div>
               {product.status === "hot" ? <div className="hot">Hot</div> : ""}
               {product.status === "new" ? <div className="new">New</div> : ""}
             </div>
@@ -32,5 +42,4 @@ const Products = () => {
     </>
   );
 };
-
 export default Products;

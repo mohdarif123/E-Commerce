@@ -4,14 +4,14 @@ import { CartReducer } from "./CartReducer";
 export const CartContexts = createContext();
 
 const CartContextProvider = (props) => {
-  const [cartProduct, dispatch] = useReducer(CartReducer, {
+  const [cart, dispatch] = useReducer(CartReducer, {
     shoppingCart: [],
     totalPrice: 0,
     qty: 0,
   });
   return (
     <>
-      <CartContexts.Provider value={{ cartProduct, dispatch }}>
+      <CartContexts.Provider value={{ ...cart, dispatch }}>
         {props.children}
       </CartContexts.Provider>
     </>

@@ -5,6 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 const Cart = () => {
   const { shoppingCart, totalPrice, qty, dispatch } = useContext(CartContexts);
+  console.log(shoppingCart, "shoppingCart");
   return (
     <div className="cart-container">
       <div className="cart-details" style={{ marginTop: "100px" }}>
@@ -15,17 +16,32 @@ const Cart = () => {
                   {<img src={cart.image} alt="not found" />}
                 </span>
                 <span className="cart-product-name">{cart.name}</span>
-                <span className="cart-product-price">${cart.price}.00</span>
-                <span className="inc">
+                <span className="cart-product-price">${cart.Price}.00</span>
+                <span
+                  className="inc"
+                  onClick={() =>
+                    dispatch({ type: "INC", id: cart.id, cart: cart })
+                  }
+                >
                   <AddIcon />
                 </span>
                 <span className="product-quantity">{cart.qty}</span>
                 <span className="dec">
-                  <RemoveIcon />
+                  <RemoveIcon
+                    onClick={() =>
+                      dispatch({ type: "DEC", id: cart.id, cart: cart })
+                    }
+                  />
                 </span>
-                <span className="product-total-price">500.00</span>
+                <span className="product-total-price">
+                  ${cart.Price * cart.qty}.00
+                </span>
                 <span className="delete-product">
-                  <DeleteIcon />
+                  <DeleteIcon
+                    onClick={() =>
+                      dispatch({ type: "DELETE", id: cart.id, cart: cart })
+                    }
+                  />
                 </span>
               </div>
             ))

@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import { CartContexts } from "../Global/CartContext";
+import StripeCheckout from "react-stripe-checkout";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
-import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
-const Cart = () => {
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const Cart = (props) => {
   const { shoppingCart, totalPrice, qty, dispatch } = useContext(CartContexts);
 
   const handleTokenStripe = async (token) => {
@@ -14,7 +17,18 @@ const Cart = () => {
       product,
       token,
     });
-    console.log(response,"resp")
+    const { status } = response.data;
+    if (status === "success") {
+      dispatch({ type: "EMPTY" });
+      props.history.push(`/`);
+      toast.success(
+        "You have paid successfully now you can continue your shopping!",
+        {
+          position: toast.POSITION.TOP_RIGHT,
+        }
+      );
+    } else {
+    }
   };
   return (
     <div className="cart-container">
@@ -70,7 +84,6 @@ const Cart = () => {
               <div className="just-title">Total Price</div>
               <div className="items-price">${totalPrice}.00</div>
             </div>
-
             {/* stripe  */}
             <div className="stripe-section">
               <StripeCheckout
@@ -80,7 +93,7 @@ const Cart = () => {
                 amount={totalPrice * 100}
                 name="ALL PRODUCTS"
                 stripeKey="pk_test_51KZAdcSEXD4l31rsr2pG1L8OhHiGxzozDPdF92VdQeJ0LsTX2zmMn0ovpNHO9ZWtiAdqadPdPnTEccX4UhXOJdVN00So9UBksB"
-              ></StripeCheckout>
+              />
             </div>
           </div>
         </div>

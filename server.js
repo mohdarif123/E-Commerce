@@ -3,12 +3,14 @@ const cors = require("cors");
 const stripe = require("stripe")(
   "sk_test_51KZAdcSEXD4l31rsd25MwPyj7uzHdZd2ItwDYqKSidFUfhAmMqtMT92ytt49swGK1QslbxdvlGv8duEM1BPqQ8TJ00Ko34g9J0"
 );
-const { v4: uuidv4 } = require("uuid");
+
 const app = express();
+
 app.use(cors());
 app.use(express.json());
+
 app.get("/", (req, res) => {
-  res.send("Welcome into react shop websites");
+  res.send("Add your Stripe Secret Key to the .require('stripe') statement!");
 });
 
 app.post("/checkout", async (req, res) => {
@@ -49,6 +51,6 @@ app.post("/checkout", async (req, res) => {
   res.json({ status });
 });
 
-app.listen(8080, () => {
+const server = app.listen(8080, () => {
   console.log("Your app is running on port number 8080");
 });
